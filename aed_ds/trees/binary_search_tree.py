@@ -6,6 +6,8 @@ from .nodes.binary_nodes import BinarySearchTreeNode
 
 
 class BinarySearchTree(OrderedDictionary, Tree):
+    self.num_elements = 0
+
     # Returns the number of elements in the dictionary.
     def size(self): pass
 
@@ -18,7 +20,13 @@ class BinarySearchTree(OrderedDictionary, Tree):
 
     # Inserts a new value, associated with key k.
     # Throws DuplicatedKeyException
-    def insert(self, k, v): pass
+    def insert(self, k, v):
+        self.root = self.insert_element(self.root, k, v)
+
+    def insert_element(self, root, k, v):
+        if root is None:
+            root = BinarySearchTreeNode(k, v)
+            self.num_elements +=1
 
     # Updates the value associated with key k.
     # Throws NoSuchElementException

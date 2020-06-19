@@ -169,3 +169,8 @@ class SinglyLinkedList(List):
     def iterator(self):
         return SinglyLinkedListIterator(self)
      
+    def get_key(self):
+        return SinglyLinkedListIterator(self)
+
+    def get_value(self):
+        return self.get_last()
