@@ -31,6 +31,7 @@ class HashTable(Dictionary):
             if current_item.get_key() == k:
                 return current_item.get_value()
 
+    
     def insert(self, k, v):
         if self.has_key(k):
             raise DuplicatedKeyException()
@@ -50,6 +51,7 @@ class HashTable(Dictionary):
                 current_item.set_value(v)
                 break
 
+
     def remove(self, k):
         if not self.has_key(k):
             raise NoSuchElementException()
@@ -62,11 +64,11 @@ class HashTable(Dictionary):
                     self.num_elements -= 1
                     return current_item.get_value()
 
+
     def keys(self):
         result = SinglyLinkedList()
         for i in range(self.array_size):
             for _ in range(self.table[i].size()):
-            it = self.table[i].iterator()
                 result.insert_last(self.table[i].iterator().next().get_key())
         return result
 
@@ -91,10 +93,15 @@ class HashTable(Dictionary):
         return sum([ord(c) for c in k]) % self.size()
 
     def has_key(self, k):
-        idx = self.hash_function(k)
-        it = self.table[idx].iterator()
-        while it.has_next():
-            current_item = it.next()
-            if current_item.get_key() == k:
-                return True
-        return False    
+        for i in range(self.array_size):
+            for _ in range(self.table[i].size()):
+                if self.table[i].iterator().next().get_key() == k:
+                    return True
+        return False
+        # idx = self.hash_function(k)
+        # it = self.table[idx].iterator()
+        # while it.has_next():
+        #   current_item = it.next()
+        #   if current_item.get_key() == k:
+        #       return True
+        # return False
