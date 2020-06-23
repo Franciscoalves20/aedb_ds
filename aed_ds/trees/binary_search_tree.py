@@ -55,14 +55,37 @@ class BinarySearchTree(OrderedDictionary, Tree):
             root.set_right_child(node)
         return root
    
-   
     # Updates the value associated with key k.
     # Throws NoSuchElementException
-    def update(self, k, v): pass
+    def update(self, k, v):
+        self.update_value(self.root, k, v)
 
+    def update_value(self, root, k, v):
+        if root == None:
+            raise NoSuchElementException()
+        elif root.get_key() == k:
+            root.set_element(v)
+        elif root.get_key() > k:
+            self.update_value(root.get_left_child(), k, v)
+        elif root.get_key() < k:
+            self.update_value(root.get_right_child(), k, v)
+
+    
     # Removes the key k, and the value associated with it.
     # Throws NoSuchElementException
-    def remove(self, k): pass
+    def remove(self, k):
+        self.root = self.remove_root(self.root, k)
+
+    def remove_root(self, root, k):
+        if root == None:
+            raise NoSuchElementException()
+        elif root.get_key() == k:
+            self.num_elements -= 1
+            root = None
+        elif root.get_key() > k:
+            return self.remove_root(root.get_left_child(), k)
+        elif root.get_key() < k:
+            return self.remove_root(root.get_right_child(), k)
 
     # Returns a List with all the keys in the dictionary.
     def keys(self): pass
@@ -109,6 +132,12 @@ class BinarySearchTree(OrderedDictionary, Tree):
             raise EmptyTreeException()
         return self.root.get_element()
 
+
+    def get_node(self, root):
+        if self.is_empty():
+            raise EmptyTreeException()
+
+        
     # Returns the height of the tree
     # Throws EmptyTreeException
     def height(self): pass
