@@ -30,8 +30,8 @@ class BinarySearchTreeNode(BinaryTreeNode):
         BinaryTreeNode.__init__(self, element, left_child, right_child)
         self.key = key
     
-    
-    
+    def get_key(self):
+        return self.key
     
     def set_key(self):
         self.key = key
