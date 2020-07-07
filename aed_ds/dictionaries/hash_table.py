@@ -90,7 +90,7 @@ class HashTable(Dictionary):
         return result
 
     def hash_function(self, k):
-        return sum([ord(c) for c in k]) % self.size()
+        return sum([ord(c) for c in k]) % self.array_size
 
     def has_key(self, k):
         idx = self.hash_function(k)
